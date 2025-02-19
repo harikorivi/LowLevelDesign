@@ -1,8 +1,8 @@
-# LowLevelDesign
+# Low Level Design
 Discuss and Sharing the learning Notes
 
 
-SOLID Principles Overview
+## SOLID Principles Overview
 
 SOLID is an acronym that stands for five fundamental principles of object-oriented programming (OOP) and software design:
 S - Single Responsibility Principle (SRP)
@@ -22,14 +22,16 @@ Reduced coupling between classes
 Improved cohesion within classes
 Example:
 
-// Bad practice: Multiple responsibilities in one class
+### // Bad practice: Multiple responsibilities in one class
+```
 public class Employee {
     public void calculateSalary() { ... }
     public void saveEmployeeData() { ... }
     public void generateReport() { ... }
 }
-
-// Good practice: Separate classes for each responsibility
+```
+### // Good practice: Separate classes for each responsibility
+```
 public class SalaryCalculator {
     public void calculateSalary() { ... }
 }
@@ -39,17 +41,19 @@ public class EmployeeRepository {
 public class ReportGenerator {
     public void generateReport() { ... }
 }
-Open-Closed Principle (OCP)
+```
+## Open-Closed Principle (OCP)
 
-Definition: Software entities (classes, modules, functions, etc.) should be open for extension but closed for modification.
-Goal: To allow for the addition of new functionality without altering existing code.
-Benefits:
+**Definition:** Software entities (classes, modules, functions, etc.) should be open for extension but closed for modification.
+**Goal:** To allow for the addition of new functionality without altering existing code.
+**Benefits:**
 Increased flexibility and extensibility
 Reduced risk of introducing bugs into existing code
 Improved maintainability
-Example:
+### Example:
 
-// Bad practice: Modifying existing code to add new functionality
+### // Bad practice: Modifying existing code to add new functionality
+```
 public class Shape {
     public void draw() {
         if (this instanceof Circle) {
@@ -59,8 +63,9 @@ public class Shape {
         }
     }
 }
-
-// Good practice: Using inheritance and polymorphism to extend functionality
+```
+### // Good practice: Using inheritance and polymorphism to extend functionality
+```
 public abstract class Shape {
     public abstract void draw();
 }
@@ -76,16 +81,18 @@ public class Rectangle extends Shape {
         // Draw rectangle
     }
 }
-Liskov Substitution Principle (LSP)
+```
+## Liskov Substitution Principle (LSP)
 
-Definition: Derived classes should be substitutable for their base classes.
-Goal: To ensure that derived classes behave as expected when used in place of their base classes.
-Benefits:
+**Definition:** Derived classes should be substitutable for their base classes.
+**Goal:** To ensure that derived classes behave as expected when used in place of their base classes.
+**Benefits:**
 Improved code reliability and predictability
 Reduced errors due to incorrect assumptions about subclass behavior
-Example:
+**Example:**
 
-// Bad practice: Violating LSP
+### // Bad practice: Violating LSP
+```
 public class Bird {
     public void fly() { ... }
 }
@@ -95,8 +102,9 @@ public class Penguin extends Bird {
         throw new UnsupportedOperationException("Penguins cannot fly");
     }
 }
-
-// Good practice: Designing classes to adhere to LSP
+```
+### // Good practice: Designing classes to adhere to LSP
+```
 public abstract class Bird {
     public abstract void makeSound();
 }
@@ -113,16 +121,18 @@ public class NonFlyingBird extends Bird {
         System.out.println("Honk");
     }
 }
-Interface Segregation Principle (ISP)
+```
+## Interface Segregation Principle (ISP)
 
-Definition: Clients should not be forced to depend on interfaces they do not use.
-Goal: To avoid bloated interfaces that contain methods that are not relevant to all clients.
-Benefits:
+**Definition:** Clients should not be forced to depend on interfaces they do not use.
+**Goal:** To avoid bloated interfaces that contain methods that are not relevant to all clients.
+**Benefits:**
 Reduced coupling between clients and interfaces
 Improved flexibility and maintainability
-Example:
+**Example:**
 
-// Bad practice: Fat interface
+### // Bad practice: Fat interface
+```
 public interface Printer {
     void print();
     void scan();
@@ -140,8 +150,9 @@ public class BasicPrinter implements Printer {
         throw new UnsupportedOperationException();
     }
 }
-
-// Good practice: Segregated interfaces
+```
+### // Good practice: Segregated interfaces
+```
 public interface Printable {
     void print();
 }
@@ -155,17 +166,19 @@ public class BasicPrinter implements Printable {
     @Override
     public void print() { ... }
 }
-Dependency Inversion Principle (DIP)
+```
+## Dependency Inversion Principle (DIP)
 
-Definition: High-level modules should not depend on low-level modules, but both should depend on abstractions.
-Goal: To decouple high-level modules from low-level modules and promote flexibility and testability.
-Benefits:
+**Definition:** High-level modules should not depend on low-level modules, but both should depend on abstractions.
+**Goal:** To decouple high-level modules from low-level modules and promote flexibility and testability.
+**Benefits:**
 Reduced coupling between modules
 Improved flexibility and maintainability
 Easier testing
-Example:
+**Example:**
 
-// Bad practice: Tight coupling
+### // Bad practice: Tight coupling
+```
 public class PaymentProcessor {
     private final PayPalPaymentGateway paymentGateway;
     public PaymentProcessor() {
@@ -175,8 +188,9 @@ public class PaymentProcessor {
         paymentGateway.processPayment();
     }
 }
-
-// Good practice: Dependency inversion
+```
+### // Good practice: Dependency inversion
+```
 public interface PaymentGateway {
     void processPayment();
 }
@@ -193,3 +207,4 @@ public class PaymentProcessor {
         paymentGateway.processPayment();
     }
 }
+```
